@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f4f1e9"><title>合成特效版 · 再合大一点</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css?v=1.0.1">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar"><a class="brand" href="./"><span class="brand-mark">✦</span><span>合成特效版<small>再合大一点</small></span></a><button class="quiet" id="boardBtn" type="button">🏆 排行榜</button></header>
+    <section class="scoreboard" aria-label="成绩"><div><span>本局得分</span><strong id="score">0</strong></div><div class="record"><span>个人最高</span><strong id="best">0</strong></div><div class="up-next"><canvas id="next" width="88" height="88" aria-label="下一个物品"></canvas><div><span>下一个</span><b id="nextEffect">○ 普通</b></div></div></section>
+    <section class="current"><span class="pill" id="currentEffect">○ 普通</span><span id="currentHint">相同等级相碰，合成更高一级</span></section>
+    <section class="stage" id="stage">
+      <canvas id="game" aria-label="合成游戏区域，鼠标点击投放；触屏拖动后松手投放"></canvas>
+      <div class="board-caption">保持在警戒线下方</div>
+      <div class="overlay" id="overlay"><div class="result" id="overPanel"><span class="eyebrow">这一局，合得不错</span><h1>游戏结束</h1><strong class="result-score" id="finalScore">0</strong><p>个人最高 <b id="finalBest">0</b></p><p id="submitMsg" aria-live="polite">成绩已结算</p><button class="primary" id="restartBtn">再来一局 <span>↗</span></button><div class="result-actions"><button class="quiet" id="submitBtn">提交成绩</button><button class="quiet" id="boardBtn2">查看排名</button></div></div></div>
+      <div class="pause-cover" id="pauseCover" hidden><span>Ⅱ</span><strong>休息一下</strong><button class="primary" id="resumeBtn">继续游戏</button></div>
+    </section>
+    <nav class="effect-legend" aria-label="特殊效果说明"><button data-effect="blast"><i class="blast">✹</i><span>爆裂<small>合成爆破</small></span></button><button data-effect="magnet"><i class="magnet">∩</i><span>牵引<small>吸引同级</small></span></button><button data-effect="ice"><i class="ice">❄</i><span>冰封<small>3次后解冻</small></span></button><button data-effect="inflate"><i class="inflate">↗</i><span>膨胀<small>体积变大</small></span></button></nav>
+    <footer class="toolbar"><button id="helpBtn" class="quiet">玩法说明</button><div><button id="soundBtn" class="icon" aria-label="切换音效" aria-pressed="true"><span class="ico">🔊</span><span class="lbl sr-only">音效开</span></button><button id="pauseBtn" class="icon" aria-label="暂停">Ⅱ</button><button id="resetBtn" class="icon" aria-label="重新开始">↻</button></div></footer>
+  </main>
+  <dialog id="infoDialog" aria-labelledby="infoTitle"><div class="dialog-head"><h2 id="infoTitle">怎么玩</h2><button class="close" data-close="infoDialog" aria-label="关闭">×</button></div><div id="infoBody"></div></dialog>
+  <dialog id="boardDialog" aria-labelledby="boardTitle"><div class="dialog-head"><div><span class="eyebrow">每一次合成，都算数</span><h2 id="boardTitle">排行榜</h2></div><button class="close" data-close="boardDialog" aria-label="关闭">×</button></div><label class="nickname">我的昵称<input id="nickInput" maxlength="12" placeholder="玩家" autocomplete="nickname"></label><p class="board-note">本服务保存的最高50条成绩 · 同分先达成者优先</p><div id="boardList" aria-live="polite"></div><button class="quiet" id="boardRefresh">刷新排行榜</button></dialog>
+  <dialog id="restartDialog"><div class="dialog-head"><h2>开始新的一局？</h2></div><p>当前这局尚未结束，重开后不会提交它的成绩。</p><div class="result-actions"><button class="quiet" data-close="restartDialog">继续这一局</button><button class="primary" id="confirmRestart">重新开始</button></div></dialog>
+  <canvas id="chain" width="680" height="112" hidden></canvas>
+  <script src="assets/fruits/parts.js"></script><script src="assets/special/parts.js"></script><script src="assets/fruits/blur.js"></script><script src="effects.js"></script><script src="leaderboard.js"></script><script src="game.js"></script><script src="ui.js"></script>
+</body></html>
